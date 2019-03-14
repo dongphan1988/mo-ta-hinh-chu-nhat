@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="400" style="border:2px solid seagreen;"></canvas>
+<p id="area"></p> <br>
+<p id="perimeter1"></p>
+    <script>
+        let Rectangle = function (valueLegth, valueWidth,) {
+            this.valueHeight = valueLegth;
+            this.valueWidth = valueWidth;
+            this.getValueLegth = function () {
+                return this.valueHeight;
+            };
+            this.getValueWidth = function () {
+                return this.valueWidth;
+            };
+            this.getAcreage = function (valueLegth,valueWidth) {
+               let acreage = this.valueHeight * this.valueWidth;
+                document.getElementById("area").innerHTML = "Acreage = "+acreage;
+
+            };
+            this.getPerimeter = function () {
+                let perimeter = (this.valueHeight + this.valueWidth)*2;
+                document.getElementById("perimeter1").innerHTML = "Perimeter = "+perimeter;
+
+            };
+            this.getViewRectangle = function(valueLegth,valueWidth){
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                ctx.beginPath();
+                ctx.moveTo(30,30);
+                ctx.lineTo(30,this.valueHeight);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(30,30);
+                ctx.lineTo(this.valueWidth,30);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(this.valueWidth,this.valueHeight);
+                ctx.lineTo(this.valueWidth,30);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(this.valueWidth,this.valueHeight);
+                ctx.lineTo(30,this.valueHeight);
+                ctx.stroke();
+            }
+        };
+        let rectangle = new Rectangle(150,100);
+        rectangle.getViewRectangle();
+        rectangle.getAcreage();
+        rectangle.getPerimeter();
+
+    </script>
+</body>
+</html>
